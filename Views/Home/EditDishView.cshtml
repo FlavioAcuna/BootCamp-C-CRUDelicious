@@ -1,0 +1,73 @@
+@model Dish;
+
+<div class="text-center">
+    <h1 class="display-4">@ViewBag.cargaForm.Name</h1>
+    <div>
+        <h4>
+            <div class="container text-center">
+                <div class="row mx-auto">
+                    <div class="col">
+                        <form asp-action="IndexView" asp-controller="Home" method="get">
+                            <button type="submit" class="btn btn-link">Home</button>
+                        </form>
+                    </div>
+                    <div class="col">
+                        <form asp-action="RAddDish" asp-controller="Home" method="get">
+                            <button class="btn btn-link">Add Dish</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </h4>
+    </div>
+    <br>
+</div>
+<div class="container">
+    <form asp-action="UpdateDish" asp-controller="Home" asp-route-DishId="@ViewBag.cargaForm.DishId" method="post">
+        <div class="row">
+            <div class="col">
+                <label asp-for="Chef">Nombre Chef</label>
+                <input asp-for="Chef" id="ChefName"></input>
+                <span asp-validation-for="Chef"></span>
+                <label asp-for="Name">Nombre Plato</label>
+                <input asp-for="Name" id="DishName">
+                <span asp-validation-for="Name"></span>
+                <label asp-for="Calories">N° Calorias</label>
+                <input asp-for="Calories" id="NCalories">
+                <span asp-validation-for="Calories"></span>
+            </div>
+            <div class="col text-center">
+                <label for="">Sabrosura</label>
+                <br>
+                <select asp-for="Tastinness" class="w-50" sel>
+                    @for (int i = 1; i <= 5; i++)
+                    {
+                        if (i == @ViewBag.cargaForm.Tastinness)
+                        {
+                            <option selected value="@i">@i</option>
+                        }
+                        else
+                        {
+                            <option value="@i">@i</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="Tastinness"></span>
+            </div>
+            <div class="col">
+                <label asp-for="Description">Descripcion</label>
+                <textarea asp-for="Description" rows="5" id="DishDescription"></textarea>
+                <span asp-validation-for="Description"></span>
+                <button class="btn btn-success">Editar Plato</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    document.getElementById("ChefName").value = "@ViewBag.cargaForm.Chef"
+    document.getElementById("DishName").value = "@ViewBag.cargaForm.Name"
+    document.getElementById("NCalories").value = "@ViewBag.cargaForm.Calories"
+    document.getElementById("DishDescription").value = "@ViewBag.cargaForm.Description"
+</script>

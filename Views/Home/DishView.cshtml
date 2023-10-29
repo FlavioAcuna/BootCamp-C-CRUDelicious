@@ -1,0 +1,46 @@
+<div class="text-center">
+    <h1 class="display-4">@ViewBag.onePlato.Name</h1>
+    <div>
+        <h4>
+            <div class="container text-center">
+                <div class="row mx-auto">
+                    <div class="col">
+                        <form asp-action="IndexView" asp-controller="Home" method="get">
+                            <button type="submit" class="btn btn-link">Home</button>
+                        </form>
+                    </div>
+                    <div class="col">
+                        <form asp-action="RAddDish" asp-controller="Home" method="get">
+                            <button class="btn btn-link">Add Dish</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </h4>
+    </div>
+    <br>
+</div>
+<div>
+    <h5>@ViewBag.onePlato.Name by @ViewBag.onePlato.Chef</h5>
+    <hr>
+    <h4>@ViewBag.onePlato.Description</h4>
+    <h4>Calorias: @ViewBag.onePlato.Calories</h4>
+    <h4>Sabrosura: @ViewBag.onePlato.Tastinness</h4>
+    <div class="text-center container">
+        <div class="row">
+            <div class="col">
+                <form asp-action="DeleteDish" asp-controller="Home" asp-route-DishId="@ViewBag.onePlato.DishId"
+                    method="post">
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
+            </div>
+            <div class="col">
+                <form asp-action="EditDish" asp-controller="Home" asp-route-DishId="@ViewBag.onePlato.DishId"
+                    method="get">
+                    <button type="submit" class="btn btn-primary">Editar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
